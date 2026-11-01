@@ -1,211 +1,816 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دراسة الجدوى التقنية والاقتصادية الشاملة - مجموعة مدار</title>
+    <title>دراسة جدوى استثمارية | منظومة مدار للإنشاءات السريعة مسبقة الصنع</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Tajawal & Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        madar: {
+                            navy: '#0b132b',
+                            dark: '#1c2541',
+                            accent: '#3a506b',
+                            cyan: '#00f5d4',
+                            gold: '#d4af37',
+                            goldHover: '#f3ca40',
+                            steel: '#48cae4',
+                            cardBg: 'rgba(28, 37, 65, 0.65)'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --bg-main: #0b0f19;
-            --bg-card: #131b2e;
-            --bg-glass: rgba(19, 27, 46, 0.7);
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.15);
-            --success: #10b981;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-            --border-glow: rgba(56, 189, 248, 0.4);
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #070a13;
+            color: #f1f5f9;
+            overflow-x: hidden;
         }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.7; padding: 30px; }
-        
-        .container { max-width: 1200px; margin: 0 auto; }
-
-        /* Header */
-        header { 
-            background: linear-gradient(135deg, var(--bg-card), #0f172a); 
-            border: 1px solid var(--border); 
-            border-radius: 16px; 
-            padding: 40px; 
-            text-align: center; 
-            margin-bottom: 35px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
-            position: relative;
-            overflow: hidden;
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        header::after {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        h1 { color: var(--accent); font-size: 30px; margin-bottom: 12px; font-weight: 800; letter-spacing: -0.5px; }
-        .subtitle { color: var(--text-muted); font-size: 16px; font-weight: 500; }
-
-        /* KPI Grid */
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 35px; }
-        .kpi-card { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border); 
-            border-radius: 12px; 
-            padding: 25px; 
-            text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
+        .glass-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px -10px rgba(0, 245, 212, 0.15);
         }
-        .kpi-card:hover { transform: translateY(-3px); border-color: var(--border-glow); }
-        .kpi-title { color: var(--text-muted); font-size: 14px; margin-bottom: 8px; }
-        .kpi-value { color: var(--success); font-size: 28px; font-weight: bold; }
-
-        /* Content Sections */
-        .section-box { 
-            background: var(--bg-card); 
-            border: 1px solid var(--border); 
-            border-radius: 14px; 
-            padding: 30px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff 0%, #e2c044 50%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        h2 { color: var(--accent); font-size: 20px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-        p { color: var(--text-muted); margin-bottom: 15px; font-size: 15px; text-align: justify; }
-        
-        /* Lists & Tables */
-        ul { list-style: none; margin-top: 15px; }
-        li { position: relative; padding-right: 22px; margin-bottom: 12px; color: var(--text-muted); font-size: 15px; }
-        li::before { content: "▪"; position: absolute; right: 0; color: var(--accent); font-size: 16px; }
-        
-        .table-container { width: 100%; overflow-x: auto; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; text-align: right; font-size: 14px; }
-        th, td { padding: 14px 16px; border-bottom: 1px solid var(--border); }
-        th { color: var(--accent); background: rgba(56, 189, 248, 0.05); font-weight: bold; }
-        td { color: var(--text-muted); }
-        tr:hover td { background: rgba(255, 255, 255, 0.01); color: var(--text-main); }
-
-        /* Footer */
-        footer { 
-            text-align: center; 
-            padding: 30px; 
-            color: var(--text-muted); 
-            font-size: 13px; 
-            border-top: 1px solid var(--border); 
-            margin-top: 40px; 
+        .cyan-gradient-text {
+            background: linear-gradient(135deg, #ffffff 0%, #48cae4 50%, #00f5d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        @media(max-width: 768px) {
-            body { padding: 15px; }
-            header { padding: 25px 15px; }
-            h1 { font-size: 24px; }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0b132b;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #3a506b;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        /* Range slider styling */
+        input[type=range] {
+            accent-color: #d4af37;
         }
     </style>
 </head>
-<body>
+<body class="custom-scrollbar selection:bg-madar-gold selection:text-black">
 
-<div class="container">
-    
-    <!-- رأس الدراسة -->
-    <header>
-        <h1>دراسة الجدوى التقنية والاقتصادية - مجموعة مدار</h1>
-        <div class="subtitle">إشراف وإدارة: الأستاذ حسان دعبول | منظومة الإنشاء الجاف والتجميع الهيكلي المعياري</div>
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand / Logo Title -->
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-madar-gold to-amber-200 flex items-center justify-center text-slate-950 font-black text-2xl shadow-lg shadow-amber-500/20">
+                        م
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-madar-gold block">مجموعة مدار الصناعية</span>
+                        <h1 class="text-lg font-black text-white leading-tight">منظومة الإنشاءات السريعة</h1>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 space-x-reverse font-medium text-sm">
+                    <a href="#vision" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">الفرصة والاستراتيجية</a>
+                    <a href="#ecosystem" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">منظومة مدار التكامليّة</a>
+                    <a href="#engineering" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">الابتكار والوترجيت</a>
+                    <a href="#roadmap" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">تنوع المنتجات</a>
+                    <a href="#calculator" class="px-4 py-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800/60 transition">حاسبة التكلفة والـ ROI</a>
+                    <a href="#gallery" class="px-4 py-2 rounded-lg text-madar-gold bg-madar-gold/10 hover:bg-madar-gold/20 transition font-bold border border-madar-gold/30">معرض التصاميم</a>
+                </nav>
+
+                <!-- Call to Action Target Person -->
+                <div class="hidden lg:flex items-center bg-slate-900/80 px-4 py-2 rounded-xl border border-slate-700/60">
+                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse ml-2.5"></div>
+                    <span class="text-xs text-slate-300 font-semibold">مقدّمة لـ: <strong class="text-white">الأستاذ حسان دعبول</strong></span>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- مؤشرات الأداء والأرقام المحورية -->
-    <div class="kpi-grid">
-        <div class="kpi-card">
-            <div class="kpi-title">تخفيض التكاليف الإنشائية</div>
-            <div class="kpi-value">~35%</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">معدل تسارع سرعة الإنجاز</div>
-            <div class="kpi-value">4 أضعاف</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">كفاءة العزل الحراري والطاقي</div>
-            <div class="kpi-value">+40%</div>
-        </div>
-        <div class="kpi-card">
-            <div class="kpi-title">عدد الأصول والمخططات المعتمدة</div>
-            <div class="kpi-value">36 أصل</div>
-        </div>
-    </div>
-
-    <!-- القسم الأول: الملخص التنفيذي -->
-    <div class="section-box">
-        <h2>1. الملخص التنفيذي والإستراتيجية الصناعية</h2>
-        <p>تستهدف هذه الدراسة إرساء دعائم التحول الجذري في قطاع الإنشاءات عبر إطلاق منظومة التصنيع المسبق للكبائن الهيكلية والوحدات المعمارية المعيارية. يعتمد النموذج التشغيلي على استبدال الأساليب الإنشائية التقليدية البطيئة والمكلفة بمنظومة هندسية قائمة على الألومنيوم المؤكسد المطلي بنقشة الخشب عالية الجودة، مدعومة بوصلات فولاذية دقيقة مصممة ومقصوصة بأحدث تقنيات مياه الضغط العالي (Waterjet).</p>
-        <p>يهدف المشروع بقيادة الأستاذ حسان دعبول إلى تحقيق استقلالية تامة عن أعمال اللحام الموقعي المعقدة، وتقديم منتج نهائي يجمع بين الفخامة الجمالية، المتانة الإنشائية الفائقة، وسرعة التركيب القصوى بنظام التجميع الجاف (Dry Assembly).</p>
-    </div>
-
-    <!-- القسم الثاني: المزايا التقنية والهندسية -->
-    <div class="section-box">
-        <h2>2. المزايا التقنية ونظام التجميع الجاف</h2>
-        <ul>
-            <li><strong>إلغاء أعمال اللحام الموقعي:</strong> الاعتماد حصراً على وصلات فولاذية متداخلة ومقصوصة بالـ Waterjet تضمن تناسقاً هندسياً ميكانيكياً مطلقاً.</li>
-            <li><strong>المتانة ومقاومة العوامل الجوية:</strong> استخدام مقاطع الألومنيوم المحملة بنقشة الخشب المعالج، مما يقضي تماماً على مشاكل التآكل، الرطوبة، والصدأ مع عمر افتراضي مديد.</li>
-            <li><strong>المرونة المعمارية والتوسعة:</strong> تصميم الهياكل بوحدات قابلة للفك، النقل، والتوسعة المستقبلية دون أي هدر في المواد الإنشائية الأساسية.</li>
-            <li><strong>التكامل الكهروميكانيكي:</strong> مسارات مخفية مسبقة التجهيز لمدد التمديدات الكهربائية والصحية بمرونة تامة داخل الهيكل.</li>
-        </ul>
-    </div>
-
-    <!-- القسم الثالث: التحليل المالي والاقتصادي -->
-    <div class="section-box">
-        <h2>3. الهيكل المالي وتحليل العائد الاستثماري (ROI)</h2>
-        <p>يعكس الجدول أدناه مقارنة معيارية بين تكاليف ومدخرات اعتماد منظومة "مدار" مقارنة بالأساليب الإنشائية التقليدية للوحدات المماثلة:</p>
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-slate-950 via-madar-navy to-slate-950">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#d4af37_1px,transparent_1px)] [background-size:24px_24px]"></div>
         
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>مؤشر المقارنة</th>
-                        <th>الأسلوب التقليدي (خرسانة/حديد تقليدي)</th>
-                        <th>منظومة مدار (التجميع الجاف المسبق)</th>
-                        <th>العائد ومعدل التوفير</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>تكلفة التنفيذ للمتر المربع</td>
-                        <td>مرتفعة ومعرضة لتجاوز الموازنة</td>
-                        <td>مخفضة ومحدودة بدقة مسبقة</td>
-                        <td><strong style="color: var(--success);">توفير بنسبة 35%</strong></td>
-                    </tr>
-                    <tr>
-                        <td>المدة الزمنية للتسليم</td>
-                        <td>أشهر طويلة (تأثر بالطقس والمقاولين)</td>
-                        <td>أيام معدودة (تجميع فوري)</td>
-                        <td><strong style="color: var(--success);">أسرع بـ 4 أضعاف</strong></td>
-                    </tr>
-                    <tr>
-                        <td>الهدر الإنشائي والمادي</td>
-                        <td>يتراوح بين 15% إلى 20%</td>
-                        <td>يقترب من الصفر (0%)</td>
-                        <td><strong style="color: var(--success);">القضاء على الهدر</strong></td>
-                    </tr>
-                    <tr>
-                        <td>تكاليف الصيانة الدورية</td>
-                        <td>مرتفعة على المدى القصير والطويل</td>
-                        <td>شبه معدومة (مكونات مقاومة للتآكل)</td>
-                        <td><strong style="color: var(--success);">عمر افتراضي أطول</strong></td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-madar-gold/10 border border-madar-gold/30 text-madar-gold text-xs font-bold mb-6">
+                    <i class="fa-solid fa-crown text-amber-400"></i>
+                    دراسة جدوى استثمارية صناعية حصرية
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-white mb-6 leading-tight">
+                    إطلاق قطاع <span class="gold-gradient-text">الإنشاءات المعيارية السريعة</span>
+                    <br><span class="text-slate-300 text-2xl sm:text-4xl font-extrabold mt-2 block">بتقنيات الألمونيوم والهندسة الجافة المتقدمة</span>
+                </h1>
+
+                <p class="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed mb-10 max-w-3xl mx-auto">
+                    رؤية استراتيجية متكاملة لإنشاء خط تصنيع الأكواخ، الكبسولات الذكية، وكرفانات المطاعم. تحويل التحديات الإنشائية التقليدية إلى فرصة استثمارية محتكرة تُحرّك كافة مصانع <strong class="text-madar-gold">مجموعة مدار</strong> تحت سقف منتج استهلاكي نهائي ذو قيمة مضافة مرتفعة.
+                </p>
+
+                <!-- Key Metrics Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="text-3xl font-black text-madar-gold mb-1">0%</div>
+                        <div class="text-xs text-slate-400 font-medium">منافسة مباشرة بالسوق المحلي</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="text-3xl font-black text-emerald-400 mb-1">90%</div>
+                        <div class="text-xs text-slate-400 font-medium">سرعة تنفيذ وتجميع أعلى</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="text-3xl font-black text-cyan-400 mb-1">100%</div>
+                        <div class="text-xs text-slate-400 font-medium">تكامل مع خطوط إنتاج مدار</div>
+                    </div>
+                    <div class="glass-card p-5 rounded-2xl text-center">
+                        <div class="text-3xl font-black text-amber-300 mb-1">400%</div>
+                        <div class="text-xs text-slate-400 font-medium">كفاءة وتوفير بالنقل (Flat-pack)</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="#calculator" class="px-8 py-4 rounded-xl bg-gradient-to-r from-madar-gold to-amber-500 text-slate-950 font-extrabold shadow-lg shadow-amber-500/25 hover:brightness-110 transition flex items-center gap-3">
+                        <i class="fa-solid fa-calculator text-lg"></i>
+                        تجربة حاسبة الجدوى والتكلفة
+                    </a>
+                    <a href="#gallery" class="px-8 py-4 rounded-xl glass-panel text-white font-bold hover:bg-slate-800 transition flex items-center gap-3 border border-slate-700">
+                        <i class="fa-solid fa-images text-madar-cyan"></i>
+                        استعراض المخططات والتصاميم (36 صورة)
+                    </a>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- القسم الرابع: سلاسل الإمداد وإدارة الأصول -->
-    <div class="section-box">
-        <h2>4. إدارة الأصول والمكتبة الهندسية المعتمدة</h2>
-        <p>تعتمد المنظومة التشغيلية على قاعدة بيانات رقمية ومخططات معمارية وهيكلية موثقة بالكامل (تضم 36 أصل مرئي وهندسي)، مستضافة ومؤمنة بالكامل على النطاق التقني المعتمد للمشروع لضمان سهولة الوصول الفوري والتكامل بين فرق التصميم والمصنع ومواقع التركيب:</p>
-        <ul>
-            <li><strong>رابط الاستضافة المعتمد:</strong> <code>https://abd3ad.github.io/Madar/</code></li>
-            <li><strong>دقة المرجعية:</strong> كافة المخططات الهندسية، تفاصيل الوصلات، والمجسمات المرئية مطابقة للمعايير الصناعية العالمية.</li>
-        </ul>
-    </div>
+    <!-- SECTION 1: Vision & Market Opportunity -->
+    <section id="vision" class="py-20 border-t border-slate-800/80 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+                <div>
+                    <span class="text-madar-gold text-xs font-black uppercase tracking-widest block mb-2">القسم الأول</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">الريادة في السوق والفرصة الاستثمارية</h2>
+                </div>
+                <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
+                    سد الفجوة الكبرى في سوق البناء والإنشاءات السورية من خلال التحول نحو الإنشاءات الجافة والمستدامة.
+                </p>
+            </div>
 
-    <!-- التذييل -->
-    <footer>
-        جميع الحقوق محفوظة © مجموعة مدار 2026 | إشراف الأستاذ حسان دعبول | النطاق المعتمد: https://abd3ad.github.io/Madar/
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-madar-gold text-2xl mb-6">
+                        <i class="fa-solid fa-trophy"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">السبق والريادة المباشرة</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        يُعد هذا المشروع اللبنة الأولى لتأسيس قطاع صناعي جديد كلياً في سوريا. لا توجد جهة تصنيعية حالية تقدم أكواخاً وكبسولات مسبقة الصنع تعتمد كلياً على الهياكل المعدنية المتطورة والألمنيوم كبديل كامل ومستدام للخشب.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-madar-cyan text-2xl mb-6">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">نمو الطلب الكاسح</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        مع ارتفاع تكاليف الإسمنت والحديد والبناء التقليدي البطولي، يتجه المستثمرون والأفراد نحو الأكواخ والمصايف والمنشآت التجارية السريعة. المشروع يوفر حلول جاهزة للتشغيل الفوري فور وصولها للموقع.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">الاستجابة لمتطلبات المرحلة</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        إنهاء معانة رخص البناء المعقدة وأزمات العمالة الميدانية. العميل يتسلم وحدة سكنية أو تجارية فاخرة مكتملة المنتفعات خلال أيام معدودة بدلاً من الانتظار لسنوات.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: Ecosystem Integration -->
+    <section id="ecosystem" class="py-20 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-madar-gold text-xs font-black uppercase tracking-widest block mb-2">المحرك الاستراتيجي الكلي</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white mb-4">منظومة استهلاك قطاعات "مدار"</h2>
+                <p class="text-slate-300 text-base">
+                    السر الحقيقي والجوهرة الاستثمارية في المشروع: تحويل كافة مخرجات خطوط إنتاج مجموعة مدار إلى منتج نهائي تام الصنع مرتفع المأخوذ والربحية.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Sector 1 -->
+                <div class="glass-panel p-6 rounded-2xl border-t-4 border-amber-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-slate-400">01. القطاع الهيكلي</span>
+                        <i class="fa-solid fa-cubes text-amber-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-extrabold text-white mb-2">مصانع الألمنيوم</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        استهلاك كميات ضخمة من المقاطع الهيكلية والأنودايزد لتشكيل الهياكل الرئيسية الحاملة للكوخ أو الكبسولة، بدلاً من بيعها كمواد خام فقط.
+                    </p>
+                </div>
+
+                <!-- Sector 2 -->
+                <div class="glass-panel p-6 rounded-2xl border-t-4 border-cyan-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-slate-400">02. الواجهات والعزل</span>
+                        <i class="fa-solid fa-window-maximize text-cyan-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-extrabold text-white mb-2">قطاع الزجاج المعالج</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        تغذية الواجهات البانورامية الضخمة بالزجاج المزدوج العازل للحرارة والصوت (Double Glazing) لتعزيز رفاهية الأكواخ بنظام A-frame.
+                    </p>
+                </div>
+
+                <!-- Sector 3 -->
+                <div class="glass-panel p-6 rounded-2xl border-t-4 border-emerald-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-slate-400">03. الحماية والأبجورات</span>
+                        <i class="fa-solid fa-shield-halved text-emerald-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-extrabold text-white mb-2">قطاع الأبجور والستائر</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        دمج أنظمة الحماية الخارجية والأبجورات الميكانيكية الذكية مباشرة في فتحات الأكواخ للتحكم بالضوء والأمان.
+                    </p>
+                </div>
+
+                <!-- Sector 4 -->
+                <div class="glass-panel p-6 rounded-2xl border-t-4 border-purple-400">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-bold text-slate-400">04. التجميع والتشطيب</span>
+                        <i class="fa-solid fa-screwdriver-wrench text-purple-400 text-xl"></i>
+                    </div>
+                    <h4 class="text-lg font-extrabold text-white mb-2">الإكسسوارات والإكساء</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        تشغيل كامل مخزون الإكسسوارات، الوصلات، مقابض، وزوايا الإكساء لتقديم منتج مكتمل جاهز للتسليم الفوري.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Strategic Quote Banner -->
+            <div class="mt-12 glass-panel p-8 rounded-3xl border border-madar-gold/30 bg-gradient-to-r from-amber-950/20 via-slate-900 to-amber-950/20 text-center">
+                <blockquote class="text-lg sm:text-xl font-bold text-amber-200 max-w-4xl mx-auto">
+                    "نحن لا نبيع مجرد كوخ؛ بل نبيع المنتج النهائي الشامل لجميع مصانع مدار، مما يضاعف القيمة المضافة ويرفع هامش الربح الإجمالي للمجموعة."
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: Technical & Mechanical Innovation -->
+    <section id="engineering" class="py-20 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-madar-cyan text-xs font-black uppercase tracking-widest block mb-2">الابتكار الهندسي وتكنولوجيا التصنيع</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white mb-6 leading-tight">
+                        إلغاء الخشب تماماً
+                        <br><span class="text-madar-gold">نظام التجميع الجاف ببراغي ومفاصل Waterjet</span>
+                    </h2>
+
+                    <div class="space-y-6 text-slate-300 text-sm">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-red-500/10 border border-red-500/30 flex items-center justify-center text-red-400 shrink-0 mt-1">
+                                <i class="fa-solid fa-xmark text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">القضاء على معائب الخشب التقليدي</h4>
+                                <p class="text-slate-400 mt-1">وداعاً لمشاكل العفن، الرطوبة، التمدد والانكماش، هجمات الحشرات والنمل الأبيض. الألمونيوم يضمن ثباتاً هيكلياً مدى الحياة دون صيانة.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 mt-1">
+                                <i class="fa-solid fa-ban-smoke text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">إلغاء أعمال اللحام بالموقع والصنع</h4>
+                                <p class="text-slate-400 mt-1">نظام ربط ميكانيكي كامل الخالي من اللحام تماماً، مما يحافظ على طبقات الطلاء الأنودايزد ويمنع التشوهات الحرارية في الألمونيوم.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-madar-gold shrink-0 mt-1">
+                                <i class="fa-solid fa-gear text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-white text-base">مفاصل فولاذية مقطوعة بالوتر جيت (Waterjet Joints)</h4>
+                                <p class="text-slate-400 mt-1">تفصيل مفاصل من الحديد الصلب عالي المقاومة باستخدام ماكينات Waterjet بروابط مخفية وظاهرة، تسمح بتجميع الكوخ بواسطة عمالة عادية ببراغي سريعة جداً.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphic Matrix -->
+                <div class="glass-panel p-8 rounded-3xl border border-slate-700 space-y-6">
+                    <h3 class="text-xl font-black text-white text-center mb-4">مقارنة المواصفات: الألمونيوم الجاف vs الخشب التقليدي</h3>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-madar-gold">مقاومة العوامل الجوية والعفن</span>
+                                <span class="text-slate-400">الألمونيوم (100%) / الخشب (30%)</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-madar-gold h-full rounded-full" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-madar-cyan">سرعة التفكيك وإعادة النقل</span>
+                                <span class="text-slate-400">الألمونيوم (95%) / الخشب (15%)</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-madar-cyan h-full rounded-full" style="width: 95%"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span class="text-emerald-400">العمر الافتراضي بدون صيانة</span>
+                                <span class="text-slate-400">أكثر من 30 سنة</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-emerald-400 h-full rounded-full" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-center">
+                        <span class="text-xs text-amber-300 font-bold block mb-1"><i class="fa-solid fa-truck-ramp-box ml-1"></i> سهولة النقل والتخزين (Flat-Pack)</span>
+                        <p class="text-xs text-slate-400">يمكن تحميل 4 أكواخ مفككة بالكامل داخل شاحنة نقل واحدة فقط، مما ينعكس بخصم 75% من تكاليف الشحن اللوجستي.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: Product Diversity & Strategic Roadmap -->
+    <section id="roadmap" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-madar-gold text-xs font-black uppercase tracking-widest block mb-2">تنوع الخطوط والتطور</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white mb-4">خطوط المنتجات وخارطة الطريق</h2>
+                <p class="text-slate-400 text-sm">
+                    لا يقتصر المشروع على الأكواخ الريفية؛ بل ينطلق نحو منظومة متكاملة من المباني المسبقة الصنع.
+                </p>
+            </div>
+
+            <!-- Product Lines -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 text-madar-gold flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-campground"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">أكواخ A-Frame</h3>
+                    <p class="text-xs text-slate-400">تصاميم سياحية فاخرة بأسقف مائلة وواجهات زجاجية واسعة، مناسبة للمزارع والمصايف.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-500/10 text-madar-cyan flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-capsules"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">الكبسولات السكنية</h3>
+                    <p class="text-xs text-slate-400">وحدات سكنية مصغرة وذكية، عالية الفخامة، مناسبة للتوسعات السريعة والفنادق البيئية.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">كرفانات المطاعم</h3>
+                    <p class="text-xs text-slate-400">منافذ طعام سريعة وعربات مجهزة بالكامل ومقاومة للحريق والاشتراطات الصحية.</p>
+                </div>
+
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 text-center">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">المحلات المتنقلة</h3>
+                    <p class="text-xs text-slate-400">أكشاك ومنافذ بيع تجارية سريعة التركيب ذات مظاهر عصرية تجذب الزبائن.</p>
+                </div>
+            </div>
+
+            <!-- Two-Phase Roadmap -->
+            <div class="glass-panel p-8 rounded-3xl border border-madar-gold/30">
+                <h3 class="text-2xl font-black text-white mb-8 text-center">خارطة الطريق التشغيلية (استراتيجية الاختراق)</h3>
+                <div class="grid md:grid-cols-2 gap-8 relative">
+                    <!-- Phase 1 -->
+                    <div class="bg-slate-900/90 p-6 rounded-2xl border-r-4 border-madar-gold relative">
+                        <span class="text-xs font-extrabold text-madar-gold bg-madar-gold/10 px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">المرحلة الأولى: الانطلاق السريع</span>
+                        <h4 class="text-xl font-bold text-white mb-3">التصنيع بالمقاطع المتاحة + مفاصل Waterjet</h4>
+                        <ul class="text-xs text-slate-300 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> استخدام قطاعات الألمونيوم المتوفرة حالياً في السوق ومصانع الشركة.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> تصنيع مفاصل الربط والزوايا الصلبة عبر ماكينات الوتر جيت الخاصة بمدار.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-400"></i> كسب حصة السوق فوراً واختبار النماذج الأولية بأقل رأس مال تأسيسي.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Phase 2 -->
+                    <div class="bg-slate-900/90 p-6 rounded-2xl border-r-4 border-madar-cyan relative">
+                        <span class="text-xs font-extrabold text-madar-cyan bg-madar-cyan/10 px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">المرحلة الثانية: الاحتكار والتوسع</span>
+                        <h4 class="text-xl font-bold text-white mb-3">القوالب الحصرية المحتكرة (Custom Profiles)</h4>
+                        <ul class="text-xs text-slate-300 space-y-2">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-madar-cyan"></i> صب وتصميم قوالب ومقاطع ألمونيوم مخصصة ومحتكرة بالكامل لشركة مدار.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-madar-cyan"></i> إغلاق باب المنافسة نهائياً (High Barrier to Entry) حيث يصعب تقليد القطاعات.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-madar-cyan"></i> رفع السرعة إلى أقصى حد: مونتاج وتركيب الهيكل كاملاً في غضون ساعات.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: Interactive ROI & Cost Calculator -->
+    <section id="calculator" class="py-20 bg-slate-950 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-madar-gold text-xs font-black uppercase tracking-widest block mb-2">حاسبة حية وتفاعلية</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-white mb-3">حاسبة التكلفة والجدوى الاقتصادية</h2>
+                <p class="text-slate-400 text-sm">
+                    قم بتعديل المعطيات لاستكشاف التكلفة التقديرية، التوفير المالي، وزمن التسليم مقارنة بالبناء التقليدي.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Controls Form -->
+                <div class="lg:col-span-7 glass-panel p-8 rounded-3xl border border-slate-800 space-y-6">
+                    <!-- Unit Type Selector -->
+                    <div>
+                        <label class="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-3">1. اختر نوع المنشأة المسبقة الصنع:</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="calcUnitTypes">
+                            <button type="button" onclick="selectCalcUnit('aframe', 320)" class="calc-unit-btn active p-3 rounded-xl border border-madar-gold bg-madar-gold/10 text-white text-xs font-bold text-center flex flex-col items-center gap-2 transition">
+                                <i class="fa-solid fa-campground text-madar-gold text-lg"></i>
+                                كوخ A-Frame
+                            </button>
+                            <button type="button" onclick="selectCalcUnit('capsule', 400)" class="calc-unit-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 text-xs font-bold text-center flex flex-col items-center gap-2 hover:border-slate-500 transition">
+                                <i class="fa-solid fa-capsules text-lg"></i>
+                                كبسولة سكنية
+                            </button>
+                            <button type="button" onclick="selectCalcUnit('caravan', 280)" class="calc-unit-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 text-xs font-bold text-center flex flex-col items-center gap-2 hover:border-slate-500 transition">
+                                <i class="fa-solid fa-utensils text-lg"></i>
+                                كرفان طعام
+                            </button>
+                            <button type="button" onclick="selectCalcUnit('shop', 250)" class="calc-unit-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 text-xs font-bold text-center flex flex-col items-center gap-2 hover:border-slate-500 transition">
+                                <i class="fa-solid fa-store text-lg"></i>
+                                محل تجاري
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Area Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-extrabold text-slate-300 uppercase tracking-wider">2. المساحة الإجمالية (متر مربع):</label>
+                            <span id="areaValueDisplay" class="text-lg font-black text-madar-gold">45 م²</span>
+                        </div>
+                        <input type="range" id="areaSlider" min="15" max="200" value="45" step="5" oninput="updateCalculator()" class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1 font-bold">
+                            <span>15 م²</span>
+                            <span>100 م²</span>
+                            <span>200 م²</span>
+                        </div>
+                    </div>
+
+                    <!-- Finish Level Option -->
+                    <div>
+                        <label class="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-3">3. مستوى الإكساء والزجاج:</label>
+                        <select id="finishLevel" onchange="updateCalculator()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-madar-gold">
+                            <option value="1">قياسي (زجاج سينغل + عزل حراري متوسط)</option>
+                            <option value="1.25" selected>ديلوكس (زجاج دبل عازل + إكساء مدار الفاخر)</option>
+                            <option value="1.5">سوبر ديلوكس (زجاج بانورامي ذكي + أبجورات مدمجة)</option>
+                        </select>
+                    </div>
+
+                    <!-- Add-on Extras -->
+                    <div>
+                        <label class="block text-xs font-extrabold text-slate-300 uppercase tracking-wider mb-3">4. إضافات تشغيلية خيارية:</label>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <label class="flex items-center gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800 cursor-pointer">
+                                <input type="checkbox" id="extraSolar" onchange="updateCalculator()" class="rounded bg-slate-800 border-slate-700 text-madar-gold focus:ring-0">
+                                <span class="text-slate-300">نظام طاقة شمسية مدمج</span>
+                            </label>
+                            <label class="flex items-center gap-2 bg-slate-900/80 p-3 rounded-xl border border-slate-800 cursor-pointer">
+                                <input type="checkbox" id="extraSmart" onchange="updateCalculator()" class="rounded bg-slate-800 border-slate-700 text-madar-gold focus:ring-0">
+                                <span class="text-slate-300">تحكم ذكي بالأبجور والإضاءة</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculator Output Card -->
+                <div class="lg:col-span-5 glass-panel p-8 rounded-3xl border border-madar-gold/40 bg-gradient-to-b from-slate-900 via-slate-900 to-madar-navy relative">
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-[10px] font-black">جاهز للتركيب</span>
+                    </div>
+
+                    <h3 class="text-xs font-extrabold text-slate-400 uppercase tracking-wider mb-6">مؤشرات الجدوى والتكلفة التقديرية</h3>
+
+                    <div class="space-y-6">
+                        <div>
+                            <span class="text-xs text-slate-400 block mb-1">التكلفة التقديرية الإجمالية للمشروع:</span>
+                            <div id="totalCostDisplay" class="text-4xl sm:text-5xl font-black text-madar-gold">$18,000</div>
+                            <span class="text-[11px] text-slate-500 mt-1 block">* تشمل الهيكل، الزجاج، العزل، والمفاصل المجمعة.</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 border-t border-slate-800 pt-4">
+                            <div>
+                                <span class="text-[11px] text-slate-400 block">التوفير مقارنة بالبناء الخرساني:</span>
+                                <span id="savingsDisplay" class="text-xl font-bold text-emerald-400">$8,500 (~32%)</span>
+                            </div>
+                            <div>
+                                <span class="text-[11px] text-slate-400 block">زمن التسليم والتركيب الميداني:</span>
+                                <span id="deliveryDisplay" class="text-xl font-bold text-madar-cyan">5 إلى 7 أيام</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-950/80 p-4 rounded-2xl border border-slate-800 space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">تكلفة البناء التقليدي المماثل:</span>
+                                <span id="traditionalCostDisplay" class="text-slate-300 line-through font-bold">$26,500</span>
+                            </div>
+                            <div class="flex justify-between text-xs">
+                                <span class="text-slate-400">تكلفة الشحن اللوجستي:</span>
+                                <span class="text-emerald-400 font-bold">توفير 75% (Flat-pack)</span>
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="window.location.href='#gallery'" class="w-full py-3.5 rounded-xl bg-madar-gold text-slate-950 font-black text-sm hover:brightness-110 transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-images"></i>
+                            استعراض المخططات المتوافقة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: Interactive Architecture & Blueprint Gallery -->
+    <section id="gallery" class="py-20 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-madar-gold text-xs font-black uppercase tracking-widest block mb-2">المعرض الميداني والهندسي</span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-white">معرض التصاميم والمخططات (36 صورة)</h2>
+                </div>
+                <p class="text-slate-400 text-sm max-w-md mt-4 md:mt-0">
+                    تصفح جميع النماذج الهندسية، المساقط الأفقية، وتفاصيل الأكواخ بجميع الطرز. اضغط على أي صورة لتكبيرها.
+                </p>
+            </div>
+
+            <!-- Gallery Filter Tabs -->
+            <div class="flex flex-wrap gap-2 mb-10 border-b border-slate-800 pb-4" id="galleryFilterTabs">
+                <button onclick="filterGallery('all')" class="filter-tab-btn active px-5 py-2.5 rounded-xl bg-madar-gold text-slate-950 font-extrabold text-xs transition">الجميع (36)</button>
+                <button onclick="filterGallery('aframe')" class="filter-tab-btn px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-bold text-xs transition">أكواخ A-Frame</button>
+                <button onclick="filterGallery('blueprint')" class="filter-tab-btn px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-bold text-xs transition">مخططات مساقط أفقية</button>
+                <button onclick="filterGallery('facade')" class="filter-tab-btn px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-bold text-xs transition">واجهات ومجسمات</button>
+                <button onclick="filterGallery('barn')" class="filter-tab-btn px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-bold text-xs transition">طراز Barn & Freja</button>
+            </div>
+
+            <!-- Gallery Grid Container -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="galleryGrid">
+                <!-- Dynamic Items Inserted via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Sign-off -->
+    <footer class="py-12 bg-slate-950 border-t border-slate-800 text-slate-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 rounded-lg bg-madar-gold flex items-center justify-center text-slate-950 font-black text-lg">
+                    م
+                </div>
+                <div>
+                    <span class="text-white font-bold block text-sm">مجموعة مدار الصناعية</span>
+                    <span class="text-slate-500">منظومة الإنشاءات المعيارية السريعة &copy; 2026</span>
+                </div>
+            </div>
+
+            <div class="text-center md:text-left">
+                <p class="text-slate-300 font-medium">تم إعداد الدراسة وتصميمها للعرض المباشر أمام:</p>
+                <p class="text-madar-gold font-bold text-sm">الأستاذ حسان دعبول - رئيس مجلس الإدارة</p>
+            </div>
+        </div>
     </footer>
 
-</div>
+    <!-- Image Modal / Lightbox -->
+    <div id="imageModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 transition-all duration-300">
+        <div class="relative max-w-5xl w-full bg-slate-900 border border-slate-700 rounded-3xl overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between p-4 border-b border-slate-800 bg-slate-950/80">
+                <span id="modalCaption" class="text-sm font-bold text-white">معاينة النموذج الهندسي</span>
+                <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-800 text-slate-300 hover:text-white hover:bg-red-500/20 flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <!-- Modal Body Image -->
+            <div class="p-2 bg-black flex items-center justify-center max-h-[80vh]">
+                <img id="modalImage" src="" alt="" class="max-h-[75vh] w-auto object-contain rounded-xl">
+            </div>
+        </div>
+    </div>
 
+    <!-- JavaScript logic -->
+    <script>
+        // Gallery Images Data Array with precise URLs & categories
+        const imageData = [
+            { url: "https://abd3ad.github.io/Madar/1-1-680x780.png", title: "مخطط A-Frame حديث", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/1-1067x600.jpg", title: "واجهة كوخ ريفي فاخر", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/1.png", title: "مجسم كوخ A-Frame خشبي/ألمونيوم", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/10.png", title: "توزيع الفراغات الداخلية", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/11.png", title: "مخطط مسقط أفقي طابق سفلي", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/12.png", title: "مخطط مسقط أفقي الميزانين", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/13.png", title: "واجهة كوخ A-Frame زجاجية", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/14.png", title: "تصميم داخلي معيشة وشرفة", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/15.png", title: "مخطط توزيع غرف كوخ متوسط", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/16.png", title: "منظور خارجي ليلي لكوخ A-Frame", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/17.png", title: "مخطط معماري تفصيلي", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/18.png", title: "نموذج كوخ مع شرفة جانبية", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/19.png", title: "تفاصيل المسقط لغرف النوم", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/2.png", title: "واجهة كوخ مودرن بأسقف مائلة", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/20.png", title: "مخطط كوخ ذو مساحة واسعة", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/21.png", title: "مجسم هندسي ثلاثي الأبعاد", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/22.png", title: "مخطط أفقياً للمنتفعات والخدمات", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/23.png", title: "واجهة خلفية للكوخ", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/3.png", title: "منظور كوخ مزدوج الارتفاع", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/4.png", title: "تصميم كوخ مع واجهة بانوراما", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/5.png", title: "مسقط أفقي مدخل ومطبخ", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/6.png", title: "مخطط توزيع المساحات الصغيرة", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/7.png", title: "واجهة كوخ A-Frame زجاجية مضاءة", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/8.png", title: "مسقط أفقي كوخ دورين", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/9.png", title: "تفاصيل السلم والميزانين", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/WhatsApp Image 2026-11-01 at 1.25.08 AM.jpeg", title: "صورة تنفيذية لتجميع الهيكل", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/WhatsApp Image 2026-11-01 at 1.25.39 AM(1).jpeg", title: "صورة ميدانية للتركيب الجاف", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/WhatsApp Image 2026-11-01 at 1.25.39 AM(2).jpeg", title: "تفاصيل مفاصل الألمونيوم بالموقع", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/WhatsApp Image 2026-11-01 at 1.25.39 AM(3).jpeg", title: "نموذج كوخ مكتمل التركيب", cat: "aframe" },
+            { url: "https://abd3ad.github.io/Madar/WhatsApp Image 2026-11-01 at 1.25.39 AM.jpeg", title: "صورة من الميدان للواجهة", cat: "facade" },
+            { url: "https://abd3ad.github.io/Madar/a_frame_plus_plan2.png", title: "مخطط مسقط A-Frame Plus 2", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/a_frame_plus_plan3-473x600.png", title: "مخطط مسقط A-Frame Plus 3", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/a_frame_plus_plan4.png", title: "مخطط تفصيلي A-Frame Plus 4", cat: "blueprint" },
+            { url: "https://abd3ad.github.io/Madar/barn-2-680x780.jpg", title: "طراز Barn House الريفي", cat: "barn" },
+            { url: "https://abd3ad.github.io/Madar/freja__1-1067x600 (1).jpg", title: "طراز Freja الأوروبي - نموذج 1", cat: "barn" },
+            { url: "https://abd3ad.github.io/Madar/freja__2-1067x600.jpg", title: "طراز Freja الأوروبي - نموذج 2", cat: "barn" }
+        ];
+
+        // Render Gallery Items
+        function renderGallery(items) {
+            const container = document.getElementById('galleryGrid');
+            container.innerHTML = '';
+            
+            items.forEach((item, idx) => {
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-2xl overflow-hidden group cursor-pointer border border-slate-800';
+                card.onclick = () => openModal(item.url, item.title);
+
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden bg-slate-950">
+                        <img src="${item.url}" alt="${item.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
+                        <div class="absolute top-3 left-3 bg-slate-950/80 px-2.5 py-1 rounded-lg text-[10px] font-bold text-madar-gold border border-slate-700">
+                            ${getCatLabel(item.cat)}
+                        </div>
+                    </div>
+                    <div class="p-4 flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-white truncate max-w-[80%]">${item.title}</h4>
+                        <i class="fa-solid fa-expand text-slate-500 group-hover:text-madar-gold transition text-xs"></i>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function getCatLabel(cat) {
+            switch(cat) {
+                case 'aframe': return 'كوخ A-Frame';
+                case 'blueprint': return 'مخطط هندسي';
+                case 'facade': return 'واجهة / مجسم';
+                case 'barn': return 'طراز Barn/Freja';
+                default: return 'عام';
+            }
+        }
+
+        // Gallery Filter Logic
+        function filterGallery(category) {
+            // Update Active Tab Styles
+            const buttons = document.querySelectorAll('#galleryFilterTabs button');
+            buttons.forEach(btn => {
+                btn.className = 'filter-tab-btn px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white font-bold text-xs transition';
+            });
+            event.currentTarget.className = 'filter-tab-btn active px-5 py-2.5 rounded-xl bg-madar-gold text-slate-950 font-extrabold text-xs transition';
+
+            if (category === 'all') {
+                renderGallery(imageData);
+            } else {
+                const filtered = imageData.filter(img => img.cat === category);
+                renderGallery(filtered);
+            }
+        }
+
+        // Modal Logic
+        function openModal(url, title) {
+            document.getElementById('modalImage').src = url;
+            document.getElementById('modalCaption').innerText = title;
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        // Calculator State Variables
+        let currentUnitRate = 320; // Default Rate per m2
+
+        function selectCalcUnit(type, rate) {
+            currentUnitRate = rate;
+            const buttons = document.querySelectorAll('#calcUnitTypes button');
+            buttons.forEach(btn => {
+                btn.className = 'calc-unit-btn p-3 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 text-xs font-bold text-center flex flex-col items-center gap-2 hover:border-slate-500 transition';
+            });
+            event.currentTarget.className = 'calc-unit-btn active p-3 rounded-xl border border-madar-gold bg-madar-gold/10 text-white text-xs font-bold text-center flex flex-col items-center gap-2 transition';
+            updateCalculator();
+        }
+
+        function updateCalculator() {
+            const area = parseInt(document.getElementById('areaSlider').value);
+            document.getElementById('areaValueDisplay').innerText = area + ' م²';
+
+            const finishMultiplier = parseFloat(document.getElementById('finishLevel').value);
+            
+            let extraCost = 0;
+            if (document.getElementById('extraSolar').checked) extraCost += 2500;
+            if (document.getElementById('extraSmart').checked) extraCost += 1200;
+
+            // Calculations
+            const estimatedCost = Math.round((area * currentUnitRate * finishMultiplier) + extraCost);
+            const traditionalCost = Math.round(estimatedCost * 1.48); // ~48% higher for traditional
+            const savings = traditionalCost - estimatedCost;
+
+            let deliveryDays = "4 إلى 6 أيام";
+            if (area > 80) deliveryDays = "8 إلى 12 يوماً";
+            if (area > 140) deliveryDays = "14 إلى 18 يوماً";
+
+            // Update UI Displays
+            document.getElementById('totalCostDisplay').innerText = '$' + estimatedCost.toLocaleString();
+            document.getElementById('traditionalCostDisplay').innerText = '$' + traditionalCost.toLocaleString();
+            document.getElementById('savingsDisplay').innerText = '$' + savings.toLocaleString() + ' (~32%)';
+            document.getElementById('deliveryDisplay').innerText = deliveryDays;
+        }
+
+        // Initialize on Load
+        window.onload = function() {
+            renderGallery(imageData);
+            updateCalculator();
+        };
+    </script>
 </body>
 </html>
