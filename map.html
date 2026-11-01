@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>MADAR 3D Viewer</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-color: #121212;
+            overflow: hidden;
+            font-family: Tahoma, sans-serif;
+        }
+        /* المجسم يملأ الشاشة بالكامل في الخلفية بحجمه الطبيعي */
+        .content-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+        .sketchfab-embed-wrapper, .content-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        /* الشريط العلوي (يغطي أول 1 سم من المجسم ويمنع النقر فوقه) */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 2cm;
+            background-color: #6e6e6e;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+        /* الشريط السفلي (يغطي آخر 1 سم من المجسم ويمنع النقر تحته) */
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            height: 1.5cm;
+            background-color: #6e6e6e;
+            z-index: 10000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- المجسم يملأ الشاشة بالكامل في الخلفية -->
+    <div class="content-container">
+        <div class="sketchfab-embed-wrapper"> 
+            <iframe title="MADAR 3D" frameborder="0" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true" allow="autoplay; fullscreen; xr-spatial-tracking" xr-spatial-tracking execution-while-out-of-viewport execution-while-not-rendered web-share width="100%" height="100%" src="https://sketchfab.com/models/60bc028c6263403bb4e6faa3858ddb63/embed?autostart=1&ui_hint=0&ui_theme=dark&dnt=1"></iframe> 
+        </div>
+    </div>
+
+    <!-- الشريط العلوي الذي يغطي الأطراف ويحمل النص -->
+    <div class="top-bar">New Madar 3D Construction</div>
+    
+    <!-- الشريط السفلي الذي يغطي الأطراف -->
+    <div class="bottom-bar"></div>
+
+</body>
+</html>
